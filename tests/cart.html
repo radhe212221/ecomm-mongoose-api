@@ -1,0 +1,11 @@
+<script>    
+    const headers={
+        headers:{
+            Authorization:"bearer my-fake-token"
+        }
+    }
+    fetch("http://localhost:4000/cart",headers)
+    .then(d=>d.json())
+    .then(d=>console.log(d))
+    .catch(d=>console.log(d))
+</script>

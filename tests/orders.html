@@ -1,0 +1,12 @@
+<script>    
+    const token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYmYxYzdlN2IyYmUxNzVjMzYyYzA2NSIsImlhdCI6MTY1NjczODQzMH0.Km1rkBU4wY3U6QtuyfzaDQ1Cfk-2XYMba85NaXke7BA"
+    const headers={
+        headers:{
+            Authorization:"bearer "+token
+        }
+    }
+    fetch("http://localhost:4000/orders",headers)
+    .then(d=>d.json())
+    .then(d=>console.log(d))
+    .catch(d=>console.log(d))
+</script>

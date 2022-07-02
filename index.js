@@ -1,0 +1,33 @@
+require("dotenv").config();
+const PORT = process.env.PORT || 5000;
+const express = require("express");
+const cors = require("cors");
+const body = require("body-parser");
+const login = require("./routes/login");
+const signup = require("./routes/signup");
+const { auth } = require("./utils");
+const productsRoute = require("./routes/productsRoute");
+const tagsRoute = require("./routes/tagsRoute");
+const cartRoute = require("./routes/cartRoute");
+const ordersRoute = require("./routes/ordersRoute");
+const addRoute = require("./routes/addRoute");
+const removeRoute = require("./routes/removeRoute");
+const updateCartRoute = require("./routes/updateCartRoute");
+const checkoutRoute = require("./routes/checkoutRoute");
+const app = express();
+app.use(cors());
+app.use(body.json());
+app.use(body.urlencoded({ extended: true }));
+
+app.post("/login", login);
+app.post("/signup", signup);
+app.get("/products", productsRoute);
+app.get("/tags", tagsRoute);
+app.get("/cart", auth, cartRoute);
+app.get("/orders", auth, ordersRoute);
+app.post("/add", auth, addRoute);
+app.delete("/remove/:id", auth, removeRoute);
+app.patch("/update/:id/:qty", auth, updateCartRoute);
+app.get("/checkout", auth, checkoutRoute);
+
+app.listen(PORT, () => console.log(`server started on : ${PORT}`));
